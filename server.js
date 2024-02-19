@@ -1,7 +1,10 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000
 
+
+
+// routing - (path ping)
 app.get('/ping', (req, res) => {
   res.send('Hello')
 })
@@ -9,3 +12,5 @@ app.get('/ping', (req, res) => {
 app.listen(port, () => {
   console.log('Server is working fine')
 })
+
+
