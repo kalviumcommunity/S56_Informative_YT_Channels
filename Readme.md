@@ -7,3 +7,8 @@
 **Categorised Selection**: ***Channels grouped by genres like Education, Geopolitics, History, etcetra.***
 **User Ratings**: ***Ratings for personalised recommendations.***
 **Regular Updates**: ***Ensuring the list stays updayed with emerging informative channels.***
+
+
+
+# Render Deployment -->
+https://s56-informative-yt-channels.onrender.com/
