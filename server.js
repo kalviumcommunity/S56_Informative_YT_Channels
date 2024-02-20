@@ -3,8 +3,10 @@ const app = express();
 const port = process.env.PORT || 3000
 
 
+app.get('/', (req, res) => {
+  res.send('Hello World!!!')
+})
 
-// routing - (path ping)
 app.get('/ping', (req, res) => {
   res.send('Hello')
 })
