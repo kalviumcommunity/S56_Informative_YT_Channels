@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "S56_Informative_YT_Channels",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
