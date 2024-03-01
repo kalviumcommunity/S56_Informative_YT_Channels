@@ -1,0 +1,10 @@
+.dummydata{
+    color: yellowgreen;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Times New Roman', Times, serif;
+}
+

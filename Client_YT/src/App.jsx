@@ -1,6 +1,8 @@
-// App.js
 import { useState } from 'react';
 import './App.css';
+import DummyData from './Components/DummyData';
+import {Router, Routes, Route} from 'react-router-dom'
+import Data from './data.json'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +28,10 @@ function App() {
           <input type="text" placeholder="Search..." />
         </div>
       </div>
+      <div className='dummydata'>
+      <DummyData data={Data} />
+      </div>
+      
     </>
   );
 }
