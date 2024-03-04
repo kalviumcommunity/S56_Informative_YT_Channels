@@ -1,0 +1,22 @@
+{
+  "name": "s56_informative_yt_channels",
+  "version": "1.0.0",
+  "description": "**Idea**: ***Creating a curated list showcasing the most informative YouTube channels across diverse topics which can include Geopolitics, Education, History, etcetra.***",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "env": "^0.0.2",
+    "express": "^4.18.3",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  },
+  "keywords": []
+}
