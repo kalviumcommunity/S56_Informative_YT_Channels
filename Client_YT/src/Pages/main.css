@@ -1,0 +1,94 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+  }
+  
+  .navbar {
+    background-color: #121212;
+    color: rgb(230, 11, 18);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar li {
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .main-container {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-heading {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .current-page {
+    color: #666;
+  }
+  
+  .search-bar input {
+    padding: 7px;
+    font-size: 18px;
+    border: 2px solid rgb(102,102,102);
+    border-radius: 15px;
+    width: 90%;
+    padding-left: 13px ;
+  }
+  
+  .card-container{
+    /* border: 2px solid red; */
+    padding: 20px;    
+    display: flex;
+    gap: 20px;
+    height: auto;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .card{
+    border: 5px solid red;
+    color: white;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: #4c4b4bb0;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .card:hover{
+    transform: scale(1.1);
+    background-color: #4d4b4b;
+  }
