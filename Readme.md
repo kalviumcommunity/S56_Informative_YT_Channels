@@ -12,3 +12,6 @@
 
 # Render Deployment -->
 https://s56-informative-yt-channels.onrender.com/
+
+# Netlify Deployment Link --> 
+https://main--informative-yt-channels.netlify.app/

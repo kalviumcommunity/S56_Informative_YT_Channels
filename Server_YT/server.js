@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
-const Router = require('./routes'); 
+const Router = require('./routes');
 const port = process.env.PORT || 3000;
 const { connected, isConnected } = require('./config/dB');
+const cors = require('cors');
+app.use(cors());
+
 
 app.use('/', Router); 
 app.get('/', (req, res) => {
