@@ -10,7 +10,7 @@ const Add = () => {
   const [videos, setVideos] = useState();
   const Submit = (e) => {
     e.preventDefault();
-    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {name, subscribers, videos})
+    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {channel_name:name, subscribers:subscribers, total_videos:videos})
     .then(result => console.log(result))
     .catch(err => console.log(err))
   }

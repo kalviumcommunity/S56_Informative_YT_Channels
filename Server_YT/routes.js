@@ -25,7 +25,7 @@ router.delete('/', (req, res) => {
 });
 
 router.post("/createUser", (req,res) => {
-    YTModel.create(req.body.name)
+    YTModel.create(req.body)
     .then(users => res.json(users))
     .catch(err => res.json(err))
 })
