@@ -92,3 +92,26 @@ body {
     transform: scale(1.1);
     background-color: #4d4b4b;
   }
+
+  .addNew {
+    font-size: 40px;
+    color: red;
+    background-color: transparent;
+    margin-top: -10px;
+    margin-left: 10px;
+    border: 5px solid white;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 200ms;
+  }
+
+  .addNew:hover{
+    border: 5px solid red;
+    color: white;
+    transform: scale(0.95);
+    cursor: pointer;
+  }
+
+  

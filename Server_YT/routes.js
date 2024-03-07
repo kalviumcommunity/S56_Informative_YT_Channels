@@ -24,4 +24,10 @@ router.delete('/', (req, res) => {
     res.send('DELETE request to the homepage');
 });
 
+router.post("/createUser", (req,res) => {
+    YTModel.create(req.body.name)
+    .then(users => res.json(users))
+    .catch(err => res.json(err))
+})
+
 module.exports = router;
