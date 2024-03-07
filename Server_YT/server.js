@@ -7,7 +7,7 @@ const cors = require('cors');
 const UserModel = require('./models/YT')
 
 app.use(cors());
-app.use('/', Router); 
+app.use(Router); 
 app.use(express.json())
 
 app.get('/', (req, res) => {

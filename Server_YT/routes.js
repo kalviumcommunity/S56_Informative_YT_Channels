@@ -8,7 +8,7 @@ router.get('/get', (req, res) => {
 
 router.get('/YT', async (req, res) => {
     let result = await YTModel.find({});
-    res.send(result);
+    res.json({data:result});
     // console.log(result)
 });
 

@@ -8,9 +8,13 @@ const Add = () => {
   const [name, setName] = useState();
   const [subscribers, setSubscribers] = useState();
   const [videos, setVideos] = useState();
+  const [id , setId] = useState();
+  const [ratings, setRatings] = useState();
+
+
   const Submit = (e) => {
     e.preventDefault();
-    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {channel_name:name, subscribers:subscribers, total_videos:videos})
+    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {channel_id:id, channel_name:name, subscribers:subscribers, ratings:ratings, total_videos:videos})
     .then(result => console.log(result))
     .catch(err => console.log(err))
   }
@@ -31,6 +35,7 @@ const Add = () => {
                 className="inputInfoA"
                 type="text"
                 placeholder="Channel Name"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -40,6 +45,7 @@ const Add = () => {
                 className="inputInfoA"
                 type="text"
                 placeholder="Write in M (millions), K (thousand)"
+                value={subscribers}
                 onChange={(e) => setSubscribers(e.target.value)}
               />
             </div>
@@ -49,6 +55,7 @@ const Add = () => {
                 className="inputInfoA"
                 type="number"
                 placeholder="Total Videos"
+                value={videos}
                 onChange={(e) => setVideos(e.target.value)}
               />
             </div>
