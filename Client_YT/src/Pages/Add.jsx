@@ -18,7 +18,7 @@ const Add = () => {
       channel_name:name, subscribers:subscribers, total_videos:videos
     }
     console.log(obj)
-    axios.post('http://localhost:3000/createUser', {
+    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {
       channel_id:"12345",channel_name:obj.channel_name, subscribers:obj.subscribers,ratings:9.6 ,total_videos:obj.total_videos
     })
     .then(result => console.log(result))
