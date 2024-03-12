@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { YTModel } = require('./models/YT.js');
 
+
 router.get('/get', (req, res) => {
     res.send('GET request to the homepage')
 });
@@ -24,10 +25,20 @@ router.delete('/', (req, res) => {
     res.send('DELETE request to the homepage');
 });
 
-router.post("/createUser", (req,res) => {
-    YTModel.create(req.body)
-    .then(users => res.json(users))
-    .catch(err => res.json(err))
+router.use(express.json())
+
+router.post("/createUser", async (req,res) => {
+    try {
+        console.log('hello')
+        console.log(req.body,'req')
+        const user= new YTModel(req.body)
+        await user.save()
+        res.send(user)
+    } catch (error) {
+        res.status(500).send(err)
+        console.log(err)
+    }
+    
 })
 
 module.exports = router;

@@ -5,16 +5,22 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 
 const Add = () => {
-  const [name, setName] = useState();
-  const [subscribers, setSubscribers] = useState();
+  const [name, setName] = useState('');
+  const [subscribers, setSubscribers] = useState('');
   const [videos, setVideos] = useState();
-  const [id , setId] = useState();
-  const [ratings, setRatings] = useState();
+  // const [id , setId] = useState();
+  // const [ratings, setRatings] = useState();
 
 
   const Submit = (e) => {
-    e.preventDefault();
-    axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {channel_id:id, channel_name:name, subscribers:subscribers, ratings:ratings, total_videos:videos})
+    e.preventDefault()
+    let obj = {
+      channel_name:name, subscribers:subscribers, total_videos:videos
+    }
+    console.log(obj)
+    axios.post('http://localhost:3000/createUser', {
+      channel_id:"12345",channel_name:obj.channel_name, subscribers:obj.subscribers,ratings:9.6 ,total_videos:obj.total_videos
+    })
     .then(result => console.log(result))
     .catch(err => console.log(err))
   }
@@ -28,7 +34,7 @@ const Add = () => {
       </div>
       <div className="mainContainerA">
         <div className="innerBoxA">
-          <form onSubmit={Submit}>
+          <form>
             <div className="nameA">
               <h2>Channel Name</h2>
               <input
@@ -59,7 +65,7 @@ const Add = () => {
                 onChange={(e) => setVideos(e.target.value)}
               />
             </div>
-            <button className="addButtonA">Update</button>
+            <button className="addButtonA" onClick={Submit}>Update</button>
           </form>
         </div>
       </div>

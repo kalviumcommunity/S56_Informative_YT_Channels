@@ -1,13 +1,16 @@
+//put all the import statements
 const express = require('express');
-const app = express();
 const Router = require('./routes');
-const port = process.env.PORT || 3000;
+require('dotenv').config()
 const { connected, isConnected } = require('./config/dB');
 const cors = require('cors');
-const UserModel = require('./models/YT')
 
+//call the functions next
+const port = process.env.PORT || 3000;
+const app = express();
+
+//use of middlewares
 app.use(cors());
-app.use(Router); 
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -27,7 +30,7 @@ app.get('/ping', (req, res) => {
     console.log(err);
   }
 });
-
+app.use(Router); 
 if (require.main === module) {
   connected();
   app.listen(port, async () => {

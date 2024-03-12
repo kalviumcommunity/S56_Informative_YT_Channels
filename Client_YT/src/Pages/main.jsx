@@ -8,8 +8,10 @@ const Main = () => {
 
   useEffect(() => {
     fetch("https://s56-informative-yt-channels.onrender.com/YT")
-      .then((response) => response.json())
-      .then((data) => setData(data))
+    .then(response=>response.json())
+      .then((data) => {
+        setData(data.data)
+      })
       .catch((error) => console.error("Error in fetching the data:", error));
   }, []);
 
