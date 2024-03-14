@@ -15,9 +15,9 @@ const UpdateUser = () => {
   useEffect(() => {
     axios.get("https://s56-informative-yt-channels.onrender.com/getUser/"+id)
     .then(result => {console.log(result)
-      setName(result.data.name)
+      setName(result.data.channel_name)
       setSubscribers(result.data.subscribers)
-      setVideos(result.data.videos)
+      setVideos(result.data.total_videos)
     })
     .catch(err => console.log(err));
   }, []);
