@@ -9,7 +9,7 @@ const Add = () => {
   const [name, setName] = useState('');
   const [subscribers, setSubscribers] = useState('');
   const [videos, setVideos] = useState();
-  // const navigate = useNavigate;
+  const navigate = useNavigate;
   
   // const [id , setId] = useState();
   // const [ratings, setRatings] = useState();
