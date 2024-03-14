@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../Pages/main.css";
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 
 const Main = () => {
   const [data, setData] = useState([]);
+
 
   useEffect(() => {
     fetch("https://s56-informative-yt-channels.onrender.com/YT")
@@ -14,6 +16,13 @@ const Main = () => {
       })
       .catch((error) => console.error("Error in fetching the data:", error));
   }, []);
+
+  const handleDelete = (id) => {
+    axios.delete('https://s56-informative-yt-channels.onrender.com/deleteUser/'+id)
+    .then(res => {console.log(res)
+      window.location.reload()})
+    .catch(err => console.log(err))
+  }
 
   return (
     <div>
@@ -27,7 +36,7 @@ const Main = () => {
           <li>
             <Link
               to="/add"
-              className="addNew"
+              className="addNew"  
               title="Click to add your own channel"
             >
               +
@@ -47,16 +56,22 @@ const Main = () => {
       </div>
 
       <div className="card-container">
-        {data.map((item) => (
-          <div key={item._id} className="card">
-            <h2>{item.channel_name}</h2>
-            <p>Total Subscribers: {item.subscribers}</p>
-            <p>Total Videos: {item.total_videos}</p>
-          </div>
-        ))}
+  {data.map((item) => (
+    <div key={item._id} className="card">
+      <h2>{item.channel_name}</h2>
+      <p>Total Subscribers: {item.subscribers}</p>
+      <p>Total Videos: {item.total_videos}</p>
+      <div className="button">
+        <Link to={`/update/${item._id}`}>
+          <button>Update</button>
+        </Link>
+        <button onClick={(e) => handleDelete(item._id)}>Delete</button>
       </div>
     </div>
+  ))}
+</div>
+</div>
   );
 };
 
-export default Main;
+export default Main; 
