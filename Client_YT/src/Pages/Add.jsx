@@ -1,7 +1,7 @@
 import React from "react";
 import "../Pages/Add.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const Add = () => {
   const [name, setName] = useState('');
   const [subscribers, setSubscribers] = useState('');
   const [videos, setVideos] = useState();
-  // const navigate = useNavigate;
+  const navigate = useNavigate;
   
   // const [id , setId] = useState();
   // const [ratings, setRatings] = useState();
@@ -24,7 +24,9 @@ const Add = () => {
     axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {
       channel_id:"12345",channel_name:obj.channel_name, subscribers:obj.subscribers,ratings:9.6 ,total_videos:obj.total_videos
     })
-    .then(result => console.log(result))
+    .then(result => {console.log(result)
+      navigate('/')
+    })
     .catch(err => console.log(err))
   }
 
