@@ -4,30 +4,43 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Joi from 'joi'
 
 const Add = () => {
   const [name, setName] = useState('');
   const [subscribers, setSubscribers] = useState('');
-  const [videos, setVideos] = useState();
-  const navigate = useNavigate;
-  
-  // const [id , setId] = useState();
-  // const [ratings, setRatings] = useState();
+  const [videos, setVideos] = useState('');
+  const navigate = useNavigate();
 
+  const AddSchema = Joi.object({
+    channel_name: Joi.string().min(1).max(20).required(),
+    subscribers: Joi.string().min(2).required(),
+    total_videos: Joi.number().min(1).max(20).required()
+  });
 
-  const Submit = (e) => {
-    e.preventDefault()
-    let obj = {
-      channel_name:name, subscribers:subscribers, total_videos:videos
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { error } = AddSchema.validate({ channel_name: name, subscribers, total_videos: parseInt(videos) });
+    
+    if (error) {
+      console.log(error);
+      return;
     }
-    console.log(obj)
+    let obj = {
+      channel_name: name, subscribers, total_videos: parseInt(videos)
+    };
+
+    console.log(obj);
+
     axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {
-      channel_id:"12345",channel_name:obj.channel_name, subscribers:obj.subscribers,ratings:9.6 ,total_videos:obj.total_videos
+      channel_id: "12345", channel_name: obj.channel_name, subscribers: obj.subscribers, ratings: 9.6, total_videos: obj.total_videos
     })
-    .then(result => {console.log(result)
-      navigate('/')
+    .then(result => {
+      console.log(result);
+      navigate('/');
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
   }
 
   return (
@@ -70,7 +83,7 @@ const Add = () => {
                 onChange={(e) => setVideos(e.target.value)}
               />
             </div>
-            <button className="addButtonA" onClick={Submit}>Add</button>
+            <button className="addButtonA" onClick={handleSubmit}>Add</button>
           </form>
         </div>
       </div>
