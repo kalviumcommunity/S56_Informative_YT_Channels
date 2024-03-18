@@ -5,6 +5,7 @@ import Data from './data.json'
 import Main from './Pages/main';
 import Add from './Pages/Add';
 import Update from './Pages/Update'
+import Login from './Pages/Login';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/add" element={<Add />} />
         <Route path="/update/:id" element={<Update />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </BrowserRouter>
       {/* Uncomment Only if you want to see Dummy Data */}
