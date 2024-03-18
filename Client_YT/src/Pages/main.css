@@ -98,7 +98,6 @@ body {
     width: 45px;
     color: red;
     background-color: transparent;
-    margin-top: -10px;
     margin-left: 10px;
     border: 5px solid white;
     height: 40px;
@@ -137,6 +136,27 @@ body {
     background-color: black;
     border: 2px solid red;
     transition: 200ms;
+  }
+
+  .loginButton{
+    border: 5px solid white;
+    background-color: transparent;
+    color: red;
+    font-size: 18px;
+    padding: 10px;
+    font-family:'Times New Roman', Times, serif ;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .loginButton:hover{
+    border: 5px solid red;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    font-family:'Times New Roman', Times, serif ; 
+    transform: scale(0.95);
   }
 
   

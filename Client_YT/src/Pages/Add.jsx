@@ -15,7 +15,7 @@ const Add = () => {
   const AddSchema = Joi.object({
     channel_name: Joi.string().min(1).max(20).required(),
     subscribers: Joi.string().min(2).required(),
-    total_videos: Joi.number().min(1).max(20).required()
+    total_videos: Joi.number().min(1).required()
   });
 
   const handleSubmit = (e) => {
