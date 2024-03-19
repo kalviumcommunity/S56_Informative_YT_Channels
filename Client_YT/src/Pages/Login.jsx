@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 
-const Login = () => {
+const LoginPage = ({ loggerdin, setLoggedin }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
   const handleLogin = () => {
-    e.preventDefault()
-    console.log(true)
-    try{
-        document.cookie = `username=${username};expires=`+new Date(2028,2,1).toUTCString
-        axios.post('https://s56-informative-yt-channels.onrender.com/auth',{username,password})
-        .then((response)=>{
-
-            document.cookie = `token=${response.data};expires=`+new Date(2028,2,1).toUTCString
-        })
-        .catch((err)=>console.error(err))
-        // sessionStorage.setItem('username',username)
-        // console.log(sessionStorage)
-        // console.log(response)
+    if (username.trim() !== '' && password.trim() !== '') {
+      axios.post('http://localhost:3200/auth', { username: username }).then((res) => {
+        const token = res.data;
+        document.cookie = `username=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
+        console.log(document.cookie);
+      });
+    } else {
+      alert('Username and password are required');
     }
-    catch(error){
-        console.log(error)
-    }
-}
-  
+  };
 
   return (
     <div>
@@ -43,6 +39,8 @@ const Login = () => {
                 className="inputInfoL"
                 type="text"
                 placeholder='Enter your Username here'
+                value={username} // Bind value to state
+                onChange={(e) => setUsername(e.target.value)} // Handle input change
               />
             </div>
             <div className="videosL">
@@ -51,11 +49,11 @@ const Login = () => {
                 className="inputInfoL"
                 type="password"
                 placeholder='Enter your password here'
+                value={password} // Bind value to state
+                onChange={(e) => setPassword(e.target.value)} // Handle input change
               />
             </div>
-            <Link to="/"> 
-              <button className="addButtonL" onClick={handleLogin}>Login</button>
-            </Link>
+            <button className="addButtonL" onClick={handleLogin}>Login</button> {/* Removed Link wrapping */}
           </form>
         </div>
       </div>
@@ -63,4 +61,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
