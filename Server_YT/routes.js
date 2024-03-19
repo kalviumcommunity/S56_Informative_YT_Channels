@@ -1,6 +1,12 @@
+require('dotenv').config(); 
 const express = require('express');
 const router = express.Router();
 const { YTModel } = require('./models/YT.js');
+const jwt = require("jsonwebtoken");
+const bodyParser = require('body-parser');
+
+
+router.use(bodyParser.json());
 
 router.get('/get', (req, res) => {
     res.send('GET request to the homepage')
@@ -65,6 +71,12 @@ router.put('/updateUser/:id', async (req, res) => {
         console.log(error);
         res.status(500).send(error);
     }
+});
+router.post("/auth", (req, res) => {
+    const { username } = req.body;
+    const secretKey = process.env.Access_Token_Secret;
+    const token = jwt.sign({ username: username }, secretKey);
+    res.cookie('token', token, { httpOnly: true }); 
 });
 
 module.exports = router;
