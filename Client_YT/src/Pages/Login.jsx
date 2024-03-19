@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
-  const handleLogin = () => {
-    const username = document.querySelector('.inputInfoL').value;
-    document.cookie = `username=${username}`;
+  const [username, setUsername] = useState('');
+  
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('https://s56-informative-yt-channels.onrender.com/auth', { username });
+      if (response.data && response.data.token) {
+        document.cookie = `token=${response.data.token}`;
+      }
+    } catch (error) {
+      console.error('Error occurred during login:', error);
+    }
   };
 
   return (
@@ -27,6 +36,8 @@ const Login = () => {
                 className="inputInfoL"
                 type="text"
                 placeholder='Enter your Username here'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="videosL">
@@ -37,9 +48,7 @@ const Login = () => {
                 placeholder='Enter your password here'
               />
             </div>
-            <Link to="/"> 
-              <button className="addButtonL" onClick={handleLogin}>Login</button>
-            </Link>
+            <button className="addButtonL" onClick={handleLogin}>Login</button>
           </form>
         </div>
       </div>
