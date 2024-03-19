@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('https://s56-informative-yt-channels.onrender.com/auth', { username });
-      if (response.data && response.data.token) {
-        document.cookie = `token=${response.data.token}`;
-      }
-    } catch (error) {
-      console.error('Error occurred during login:', error);
+  const handleLogin = () => {
+    e.preventDefault()
+    console.log(true)
+    try{
+        document.cookie = `username=${username};expires=`+new Date(2028,2,1).toUTCString
+        axios.post('https://s56-informative-yt-channels.onrender.com/auth',{username,password})
+        .then((response)=>{
+
+            document.cookie = `token=${response.data};expires=`+new Date(2028,2,1).toUTCString
+        })
+        .catch((err)=>console.error(err))
+        // sessionStorage.setItem('username',username)
+        // console.log(sessionStorage)
+        // console.log(response)
     }
-  };
+    catch(error){
+        console.log(error)
+    }
+}
+  
 
   return (
     <div>
@@ -36,8 +43,6 @@ const Login = () => {
                 className="inputInfoL"
                 type="text"
                 placeholder='Enter your Username here'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="videosL">
@@ -48,7 +53,9 @@ const Login = () => {
                 placeholder='Enter your password here'
               />
             </div>
-            <button className="addButtonL" onClick={handleLogin}>Login</button>
+            <Link to="/"> 
+              <button className="addButtonL" onClick={handleLogin}>Login</button>
+            </Link>
           </form>
         </div>
       </div>

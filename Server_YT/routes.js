@@ -72,11 +72,24 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
-router.post("/auth", (req, res) => {
-    const { username } = req.body;
-    const secretKey = process.env.Access_Token_Secret;
-    const token = jwt.sign({ username: username }, secretKey);
-    res.cookie('token', token, { httpOnly: true }); 
-});
+
+app.post('/auth',async(req,res)=>{
+    
+    try{
+        const{username,password} = req.body
+        const user ={
+            "username": username,
+            "password": password
+        }
+        var token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+        console.log(token)
+        res.send(token)
+        res.cookie('token',token,{maxAge:365*24*60*60*1000})
+
+    }
+    catch(error){
+        console.log(error)
+    }
+  })
 
 module.exports = router;
