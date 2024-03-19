@@ -25,11 +25,9 @@ const Main = () => {
   };
 
   const handleLogout = () => {
-    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    // document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    setLoggedin(false);
-    navigate('/');
-};
+    document.cookie = 'username=; expires=Thu, 16 Aug 1999 00:00:00 UTC; path=/;';
+    // document.cookie = 'token=; expires=Thu, 16 Aug 1999 00:00:00 UTC; path=/;';
+  };
 
   const isLoggedIn = document.cookie.split(';').some(cookie => cookie.trim().startsWith('username='));
 

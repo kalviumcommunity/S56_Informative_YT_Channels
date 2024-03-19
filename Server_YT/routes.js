@@ -72,7 +72,7 @@ router.put('/updateUser/:id', async (req, res) => {
     }
 });
 
-router.post('/auth',(res,req) => {
+router.post('/auth',(req,res) => {
     const {username} = req.body;
     const token = jwt.sign({username: username}, "secretkey")
     console.log(token)
