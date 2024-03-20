@@ -8,8 +8,17 @@ const YTSchema = mongoose.Schema({
     total_videos: Number
 });
 
+const UserSchema = mongoose.Schema({
+    user: String
+})
+
+
 const YTModel  = mongoose.model("yt-coll",YTSchema);
+const UserModal = mongoose.model("users-coll", UserSchema)
 
 module.exports = {
-    YTModel
+    YTModel,
+    UserModal
 }
+
+

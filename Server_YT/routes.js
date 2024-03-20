@@ -4,6 +4,7 @@ const router = express.Router();
 const { YTModel } = require('./models/YT.js');
 const jwt = require("jsonwebtoken");
 const bodyParser = require('body-parser');
+const { UserModal } = require('./models/YT.js');
 
 router.use(bodyParser.json());
 
@@ -15,6 +16,15 @@ router.get('/YT', async (req, res) => {
     try {
         let result = await YTModel.find({});
         res.json({ data: result });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+router.get('/User', async (req, res) => {
+    try {
+        let result1 = await UserModal.find({});
+        res.send({user: result1});
     } catch (error) {
         res.status(500).send(error);
     }
