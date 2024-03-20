@@ -5,7 +5,8 @@ import axios from "axios";
 
 const Main = () => {
   const [data, setData] = useState([]);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("All");
 
   useEffect(() => {
     fetch("https://s56-informative-yt-channels.onrender.com/YT")
@@ -20,7 +21,7 @@ const Main = () => {
     fetch("https://s56-informative-yt-channels.onrender.com/user")
       .then((response) => response.json())
       .then((user) => {
-        setUser(user.user); 
+        setUser(user.user);
       })
       .catch((error) => console.error("Error in fetching the data:", error));
   }, []);
@@ -80,12 +81,12 @@ const Main = () => {
       <div className="main-container">
         <h1 className="main-heading">Sort the cards Added by the Users</h1>
         <div className="dropdown">
-          <select>
-            <option className="sortingBox" value="sort">
+          <select onChange={(e) => setSelectedUser(e.target.value)}>
+            <option className="sortingBox" value="All">
               All
             </option>
             {user.map((names) => (
-              <option key={names._id} value={names._id}>
+              <option key={names._id} value={names.user}>
                 {names.user}
               </option>
             ))}
@@ -94,20 +95,23 @@ const Main = () => {
       </div>
 
       <div className="card-container">
-        {data.map((item) => (
-          <div key={item._id} className="card">
-            <h2>{item.channel_name}</h2>
-            <p>Total Subscribers: {item.subscribers}</p>
-            <p>Total Videos: {item.total_videos}</p>
-            <p>Created By: {item.created_by}</p>
-            <div className="button">
-              <Link to={`/update/${item._id}`}>
-                <button>Update</button>
-              </Link>
-              <button onClick={() => handleDelete(item._id)}>Delete</button>
+        {data
+          .filter((item) =>
+            selectedUser === "All" ? true : item.created_by === selectedUser
+          )
+          .map((item) => (
+            <div key={item._id} className="card">
+              <h2>{item.channel_name}</h2>
+              <p>Total Subscribers: {item.subscribers}</p>
+              <p>Total Videos: {item.total_videos}</p>
+              <div className="button">
+                <Link to={`/update/${item._id}`}>
+                  <button>Update</button>
+                </Link>
+                <button onClick={() => handleDelete(item._id)}>Delete</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

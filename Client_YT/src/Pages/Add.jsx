@@ -1,39 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Pages/Add.css";
-import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import Joi from 'joi'
 
-const Add = () => {
+const Add = (props) => {
   const [name, setName] = useState('');
   const [subscribers, setSubscribers] = useState('');
   const [videos, setVideos] = useState('');
-  const [created, setCreated] = useState('');
   const navigate = useNavigate();
 
   const AddSchema = Joi.object({
     channel_name: Joi.string().min(1).max(20).required(),
     subscribers: Joi.string().min(2).required(),
     total_videos: Joi.number().min(1).required(),
-    created_by: Joi.string().min(1).required()
+    created_by: Joi.string().min(1).required(), 
   });
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { error } = AddSchema.validate({ channel_name: name, subscribers, total_videos: parseInt(videos), created_by: created });
+    const { error } = AddSchema.validate({ channel_name: name, subscribers, total_videos: parseInt(videos), created_by: props.username });
     
     if (error) {
       console.log(error);
       return;
     }
-    let obj = {
-      channel_name: name, subscribers, total_videos: parseInt(videos), created_by: created
-    };
 
-    console.log(obj);
+    let obj = {
+      channel_name: name, subscribers, total_videos: parseInt(videos), created_by: props.username
+    };
 
     axios.post('https://s56-informative-yt-channels.onrender.com/createUser', {
       channel_id: "12345", channel_name: obj.channel_name, subscribers: obj.subscribers, ratings: 9.6, total_videos: obj.total_videos, created_by: obj.created_by
@@ -85,16 +82,16 @@ const Add = () => {
                 onChange={(e) => setVideos(e.target.value)}
               />
             </div>
-            <div className="createdbyA">
+            {/* <div className="createdbyA">
               <h2>Created By</h2>
               <input
                 className="inputInfoA"
-                type="text"
+                type="string"
                 placeholder="Name of the Creator"
-                value={created}
+                value={props.username}
                 onChange={(e) => setCreated(e.target.value)}
               />
-            </div>
+            </div> */}
             <button className="addButtonA" onClick={handleSubmit}>Add</button>
           </form>
         </div>

@@ -9,16 +9,16 @@ import Login from './Pages/Login';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [username, setUsername] = useState('');
 
   return (
     <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/add" element={<Add />} />
+        <Route path="/add" element={<Add username={username} />} />
         <Route path="/update/:id" element={<Update />}/>
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login setUsername={setUsername} />} />
       </Routes>
     </BrowserRouter>
       {/* Uncomment Only if you want to see Dummy Data */}
