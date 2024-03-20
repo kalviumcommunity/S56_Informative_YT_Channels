@@ -99,6 +99,7 @@ const Main = () => {
             <h2>{item.channel_name}</h2>
             <p>Total Subscribers: {item.subscribers}</p>
             <p>Total Videos: {item.total_videos}</p>
+            <p>Created By: {item.created_by}</p>
             <div className="button">
               <Link to={`/update/${item._id}`}>
                 <button>Update</button>

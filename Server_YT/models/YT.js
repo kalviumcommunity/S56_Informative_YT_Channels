@@ -5,7 +5,8 @@ const YTSchema = mongoose.Schema({
     channel_name: String,
     subscribers: String, 
     ratings: Number,
-    total_videos: Number
+    total_videos: Number,
+    created_by: String
 });
 
 const UserSchema = mongoose.Schema({

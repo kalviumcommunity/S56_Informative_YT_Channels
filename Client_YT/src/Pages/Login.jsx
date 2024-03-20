@@ -14,7 +14,7 @@
       })
       .catch((err)=>console.error(err))
 
-      axios.post('https://s56-informative-yt-channels.onrender.com/postUsers', {username})
+      axios.post('https://s56-informative-yt-channels.onrender.com/postUser', {user:username})
     .then(res => {
         console.log('Username posted successfully:', res);
     })
