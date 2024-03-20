@@ -84,7 +84,7 @@ const Main = () => {
             <option className="sortingBox" value="sort">
               All
             </option>
-            {data.map((names) => (
+            {user.map((names) => (
               <option key={names._id} value={names._id}>
                 {names.user}
               </option>
