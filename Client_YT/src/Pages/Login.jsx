@@ -44,9 +44,9 @@ const Login = () => {
                 placeholder='Enter your password here'
               />
             </div>
-            <Link to="/"> 
+            {/* <Link to="/">  */}
               <button className="addButtonL" onClick={handleLogin}>Login</button>
-            </Link>
+            {/* </Link> */}
           </form>
         </div>
       </div>
