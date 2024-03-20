@@ -5,7 +5,6 @@ const { YTModel } = require('./models/YT.js');
 const jwt = require("jsonwebtoken");
 const bodyParser = require('body-parser');
 
-
 router.use(bodyParser.json());
 
 router.get('/get', (req, res) => {
@@ -72,11 +71,12 @@ router.put('/updateUser/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
-router.post("/auth", (req, res) => {
-    const { username } = req.body;
-    const secretKey = process.env.Access_Token_Secret;
-    const token = jwt.sign({ username: username }, secretKey);
-    res.cookie('token', token, { httpOnly: true }); 
-});
+
+router.post('/auth',(req,res) => {
+    const {username} = req.body;
+    const token = jwt.sign({username: username}, "secretkey")
+    console.log(token)
+    res.send(token)
+})
 
 module.exports = router;
