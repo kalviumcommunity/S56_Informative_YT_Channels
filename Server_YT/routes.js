@@ -1,9 +1,10 @@
 require('dotenv').config(); 
 const express = require('express');
 const router = express.Router();
-const { YTModel } = require('./models/YT.js');
+const { YTModel,UserModal } = require('./models/YT.js');
 const jwt = require("jsonwebtoken");
 const bodyParser = require('body-parser');
+
 
 router.use(bodyParser.json());
 
@@ -18,6 +19,22 @@ router.get('/YT', async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
+});
+
+router.get('/User', async (req, res) => {
+    try {
+        let result1 = await UserModal.find({});
+        res.send({user: result1});
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+router.post('/postUser', (req, res) => {
+    console.log(req.body.user);
+    UserModal.create(req.body)
+        .then(user => res.json(user))
+        .catch(err => res.json(err));    
 });
 
 router.post('/', (req, res) => {
@@ -78,5 +95,6 @@ router.post('/auth',(req,res) => {
     console.log(token)
     res.send(token)
 })
+
 
 module.exports = router;
